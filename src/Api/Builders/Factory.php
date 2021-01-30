@@ -34,7 +34,7 @@ class Factory
         return new WebhookInfoBuilder();
     }
 
-    public static function createWebhookUrlInfoBuilder: WebhookUrlInfoBuilder
+    public static function createWebhookUrlInfoBuilder(): WebhookUrlInfoBuilder
     {
         return new WebhookUrlInfoBuilder();
     }
