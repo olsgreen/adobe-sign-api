@@ -3,6 +3,8 @@
 namespace Olsgreen\AdobeSign\Api\Builders;
 
 use Olsgreen\AdobeSign\Api\Enums\ResourceTypes;
+use Olsgreen\AdobeSign\Api\Enums\WebhookEventNames;
+use Olsgreen\AdobeSign\Api\Enums\WebhookScopes;
 
 class WebhookInfoBuilder extends AbstractBuilder implements BuilderInterface
 {
@@ -27,38 +29,38 @@ class WebhookInfoBuilder extends AbstractBuilder implements BuilderInterface
         $this->webhookUrlInfo = new WebhookUrlInfoBuilder();
     }
 
-    public function webhookUrlInfo()
+    public function webhookUrlInfo(): WebhookUrlInfoBuilder
     {
         return $this->webhookUrlInfo;
     }
 
-    public function setName(string $name)
+    public function setName(string $name): WebhookInfoBuilder
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setUrl(string $url)
+    public function setUrl(string $url): WebhookInfoBuilder
     {
         $this->webhookUrlInfo()->setUrl($url);
 
         return $this;
     }
 
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->webhookUrlInfo()->getUrl();
     }
 
-    public function setScope(string $scope)
+    public function setScope(string $scope): WebhookInfoBuilder
     {
-        $scopes = new Enums\WebhookScopes();
+        $scopes = new WebhookScopes();
 
         if (!$scopes->contains($scope)) {
             throw new \Exception(
@@ -71,17 +73,17 @@ class WebhookInfoBuilder extends AbstractBuilder implements BuilderInterface
         return $this;
     }
 
-    public function getScope()
+    public function getScope(): string
     {
         return $this->scope;
     }
 
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
 
-    public function setResourceId(string $id)
+    public function setResourceId(string $id): string
     {
         $this->resourceId = $id;
 
@@ -90,7 +92,7 @@ class WebhookInfoBuilder extends AbstractBuilder implements BuilderInterface
 
     public function setResourceType(string $type)
     {
-        $types = new Enums\ResourceTypes();
+        $types = new ResourceTypes();
 
         if (!$types->contains($type)) {
             throw new \Exception(
@@ -101,14 +103,14 @@ class WebhookInfoBuilder extends AbstractBuilder implements BuilderInterface
         $this->resourceType = $type;
     }
 
-    public function getResourceType()
+    public function getResourceType(): string
     {
         return $this->resourceType;
     }
 
-    public function setWebhookSubscriptionEvents(array $events)
+    public function setWebhookSubscriptionEvents(array $events): WebhookInfoBuilder
     {
-        $eventNames = new Enums\WebhookEventNames();
+        $eventNames = new WebhookEventNames();
 
         if (!$eventNames->contains($events)) {
             throw new \Exception(
@@ -124,7 +126,7 @@ class WebhookInfoBuilder extends AbstractBuilder implements BuilderInterface
         return $this;
     }
 
-    public function getWebhookSubscriptionEvents()
+    public function getWebhookSubscriptionEvents(): array
     {
         return $this->webhookSubscriptionEvents;
     }

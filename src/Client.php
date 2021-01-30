@@ -112,7 +112,7 @@ class Client
      *
      * @return string
      */
-    public function getAccessToken(): string
+    public function getAccessToken()
     {
         return $this->http->getAccessToken();
     }

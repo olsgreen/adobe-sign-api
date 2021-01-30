@@ -2,6 +2,9 @@
 
 namespace Olsgreen\AdobeSign\Api\Builders;
 
+use Olsgreen\AdobeSign\Api\Enums\AgreementStates;
+use Olsgreen\AdobeSign\Api\Enums\SignatureTypes;
+
 class AgreementInfoBuilder extends AbstractBuilder implements BuilderInterface
 {
     protected $fileInfos;
@@ -39,7 +42,7 @@ class AgreementInfoBuilder extends AbstractBuilder implements BuilderInterface
 
     public function setSignatureType($type)
     {
-        $types = new Enums\SignatureTypes();
+        $types = new SignatureTypes();
 
         if (!$types->contains($type)) {
             throw new \Exception(
@@ -59,7 +62,7 @@ class AgreementInfoBuilder extends AbstractBuilder implements BuilderInterface
 
     public function setState($state)
     {
-        $states = new Enums\AgreementStates();
+        $states = new AgreementStates();
 
         if (!$states->contains($state)) {
             throw new \Exception(

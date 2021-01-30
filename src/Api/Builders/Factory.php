@@ -16,7 +16,7 @@ class Factory
 
     public static function createParticipantInfoBuilder(): ParticipantSetInfoBuilder
     {
-        return new ParticipantInfoBuilder();
+        return new ParticipantSetInfoBuilder();
     }
 
     public static function createParticipantSetInfoBuilder(): ParticipantSetInfoBuilder

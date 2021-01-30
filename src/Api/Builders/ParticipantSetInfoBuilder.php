@@ -2,6 +2,8 @@
 
 namespace Olsgreen\AdobeSign\Api\Builders;
 
+use Olsgreen\AdobeSign\Api\Enums\ParticipantRoles;
+
 class ParticipantSetInfoBuilder extends AbstractBuilder implements BuilderInterface
 {
     protected $memberInfos;
@@ -50,7 +52,7 @@ class ParticipantSetInfoBuilder extends AbstractBuilder implements BuilderInterf
 
     public function setRole(string $role)
     {
-        $roles = new Enums\ParticipantRoles();
+        $roles = new ParticipantRoles();
 
         if (!$roles->contains($role)) {
             throw new \Exception(
@@ -70,7 +72,7 @@ class ParticipantSetInfoBuilder extends AbstractBuilder implements BuilderInterf
 
     public function setLabel(string $label)
     {
-        $this->label = $lable;
+        $this->label = $label;
 
         return $this;
     }

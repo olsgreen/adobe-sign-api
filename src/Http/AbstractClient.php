@@ -37,7 +37,7 @@ abstract class AbstractClient implements ClientInterface
     /**
      * Access token to set for each request.
      *
-     * @var string
+     * @var mixed
      */
     protected $accessToken;
 
@@ -106,7 +106,7 @@ abstract class AbstractClient implements ClientInterface
     /**
      * Get the access token.
      *
-     * @return string
+     * @return mixed
      */
     public function getAccessToken()
     {
