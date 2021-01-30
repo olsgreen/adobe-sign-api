@@ -18,11 +18,9 @@ The client assumes you have and access token from the Adobe Sign oAuth flow, I h
 ### Create a new API client instance & authenticate
 
 ```php
-// Create an instance of the client & authenticate.
-$api = new \Olsgreen\AdobeSign\Client();
-$api->authenticate($your_access_token);
+// Create an instance of the client.
+$api = new \Olsgreen\AdobeSign\Client($your_access_token, ['data_center' => 'us2']);
 ```
-
 
 ### Uploading a file
 
