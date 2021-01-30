@@ -15,6 +15,13 @@ abstract class AbstractApi
         $this->client = $client;
     }
 
+    protected function booleanNormalizer()
+    {
+        return function($options, $value) {
+            return $value ? 'true' : 'false';
+        };
+    }
+
     protected function isEmptyResponse(ResponseInterface $response): bool
     {
         return !$response->hasHeader('Content-Type') && 
@@ -35,7 +42,7 @@ abstract class AbstractApi
         return false;
     }
 
-    protected function parseResponse(ResponseInterface $response): array
+    protected function parseResponse(ResponseInterface $response, bool $isDownload = false): array
     {
         if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 299) {
             if ($this->isJsonResponse($response)) {
@@ -51,7 +58,7 @@ abstract class AbstractApi
                 }
 
                 return $decoded;
-            } elseif ($this->isEmptyResponse($response)) {
+            } elseif ($isDownload || $this->isEmptyResponse($response)) {
                 return [];
             }
 
@@ -71,11 +78,11 @@ abstract class AbstractApi
         }*/
     }
 
-    protected function _get(string $uri, array $params = [], array $headers = []): array
+    protected function _get(string $uri, array $params = [], array $headers = [], $sink = null): array
     {
-        $response = $this->client->getHttp()->get($uri, $params, $headers);
+        $response = $this->client->getHttp()->get($uri, $params, $headers, $sink);
 
-        return $this->parseResponse($response);
+        return $this->parseResponse($response, isset($sink));
     }
 
     protected function _post(string $uri, array $params = [], $body = null, array $headers = []): array

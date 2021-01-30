@@ -76,9 +76,10 @@ interface ClientInterface
      * @param string $uri
      * @param array $params
      * @param array $headers
+     * @param null $sink string|resource|StreamInterface
      * @return ResponseInterface
      */
-    public function get(string $uri, array $params = [], array $headers = []): ResponseInterface;
+    public function get(string $uri, array $params = [], array $headers = [], $sink = null): ResponseInterface;
 
     /**
      * Execute a POST request.

@@ -4,8 +4,10 @@ namespace Olsgreen\AdobeSign\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -70,14 +72,22 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * @param string $uri
      * @param array $params
      * @param array $headers
+     * @param null $sink string|resource|StreamInterface
      * @return ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    public function get(string $uri, array $params = [], array $headers = []): ResponseInterface
+    public function get(string $uri, array $params = [], array $headers = [], $sink = null): ResponseInterface
     {
         $request = $this->createRequestObject('GET', $uri, $params, null, $headers);
 
-        return $this->guzzle->send($request);
+        $options = [];
+
+        if ($sink) {
+            // Save the response body to resource, stream, path.
+            $options[RequestOptions::SINK] = $sink;
+        }
+
+        return $this->guzzle->send($request, $options);
     }
 
     /**
@@ -88,7 +98,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * @param null $body
      * @param array $headers
      * @return ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function post(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
     {
@@ -109,7 +119,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * @param null $body
      * @param array $headers
      * @return ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function put(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
     {
@@ -123,7 +133,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * @param array $params
      * @param array $headers
      * @return ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function delete(string $uri, array $params = [], array $headers = []): ResponseInterface
     {
