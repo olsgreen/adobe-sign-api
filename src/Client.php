@@ -41,11 +41,9 @@ class Client
      * @param array $options
      * @param ClientInterface|null $http
      */
-    public function __construct($accessToken, array $options = [], ClientInterface $http = null)
+    public function __construct(array $options = [], ClientInterface $http = null)
     {
         $this->http = $http ?? new GuzzleClient();
-
-        $this->setAccessToken($accessToken);
 
         $this->configureFromArray($options);
     }
@@ -67,6 +65,10 @@ class Client
      */
     protected function configureFromArray(array $options)
     {
+        if (isset($options['access_token'])) {
+            $this->setAccessToken($options['access_token']);
+        }
+
         if (isset($options['data_center'])) {
             $this->dataCenter = $options['data_center'];
         }
@@ -110,7 +112,7 @@ class Client
     /**
      * Get the access token.
      *
-     * @return string
+     * @return mixed
      */
     public function getAccessToken()
     {
