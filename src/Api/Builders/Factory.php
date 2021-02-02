@@ -14,9 +14,9 @@ class Factory
         return new FileInfoBuilder();
     }
 
-    public static function createParticipantInfoBuilder(): ParticipantSetInfoBuilder
+    public static function createParticipantInfoBuilder(): ParticipantInfoBuilder
     {
-        return new ParticipantSetInfoBuilder();
+        return new ParticipantInfoBuilder();
     }
 
     public static function createParticipantSetInfoBuilder(): ParticipantSetInfoBuilder

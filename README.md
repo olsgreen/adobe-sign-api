@@ -43,7 +43,7 @@ use \Olsgreen\AdobeSign\Api\Enums\ParticipantRoles;
 ...
 
 // Create the base agreement object.
-$agreement = Factory::newAgreementInfoBuilder()
+$agreement = Factory::createAgreementInfoBuilder()
     ->setName('Test Agreement')
     ->setSignatureType(SignatureTypes::TYPE_ESIGN)
     ->setState(AgreementStates::IN_PROCESS);
@@ -51,23 +51,23 @@ $agreement = Factory::newAgreementInfoBuilder()
 // Add the PDF file for signing to the agreement using the 
 // $transientDocumentId from the document upload example above.
 $agreement->fileInfos()->add(
-    Factory::newFileInfoBuilder()
+    Factory::createFileInfoBuilder()
         ->setLabel('Test File')
         ->setTransientDocumentId($transientDocumentId)
 );
 
-// Create a participent set for the signer.
-$participantSetsInfo = Factory::newParticipantSetInfoBuilder()
+// Create a participant set for the signer.
+$participantSetsInfo = Factory::createParticipantSetInfoBuilder()
     ->setOrder(1)
     ->setRole(ParticipantRoles::SIGNER);
 
-// Add a participent to the set.
+// Add a participant to the set.
 $participantSetsInfo->memberInfos()->add(
-    Factory::newParticipantInfoBuilder()
+    Factory::createParticipantInfoBuilder()
         ->setEmail('signer@domain.com')
 );
 
-// Add the participent set to the agreement.
+// Add the participant set to the agreement.
 $agreement->participantSetsInfo()->add($participantSetsInfo);
 
 // Create the agreement via the API.
@@ -83,8 +83,8 @@ $urls = $api->agreements()->getSigningUrls($agreementId);
 
 // Will output similar to:
 // [
-//     ['email' => 'signer1@domain.com', 'url' => 'https://secure.adobesign.com/sign1'],
-//     ['email' => 'signer2@domain.com', 'url' => 'https://secure.adobesign.com/sign2']
+//     ['email' => 'signer1@domain.com', 'esignUrl' => 'https://secure.adobesign.com/sign1'],
+//     ['email' => 'signer2@domain.com', 'esignUrl' => 'https://secure.adobesign.com/sign2']
 // ]
 ```
 
