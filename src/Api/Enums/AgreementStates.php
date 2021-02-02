@@ -6,5 +6,6 @@ class AgreementStates extends AbstractEnum implements EnumInterface
 {
     const AUTHORING = 'AUTHORING', 
           DRAFT = 'DRAFT', 
-          IN_PROCESS = 'IN_PROCESS';
+          IN_PROCESS = 'IN_PROCESS',
+          CANCELLED = 'CANCELLED';
 }

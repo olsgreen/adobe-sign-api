@@ -3,6 +3,7 @@
 namespace Olsgreen\AdobeSign\Api;
 
 use Olsgreen\AdobeSign\Api\Builders\AgreementInfoBuilder;
+use Olsgreen\AdobeSign\Api\Builders\AgreementStateInfoBuilder;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Agreements extends AbstractApi
@@ -117,5 +118,25 @@ class Agreements extends AbstractApi
             ['Accept' => 'application/pdf'],
             $saveTo
         ) === [];
+    }
+
+    /**
+     * This endpoint can be used by originator/sender of an agreement to
+     * transition between the states of agreement. An allowed transition
+     * would follow the following sequence: DRAFT -> AUTHORING -> IN_PROCESS -> CANCELLED.
+     *
+     * @param string $agreementId
+     * @param AgreementStateInfoBuilder $builder
+     * @return array
+     */
+    public function transitionState(string $agreementId, AgreementStateInfoBuilder $builder): bool
+    {
+        $body = json_encode($builder->make(), JSON_PRETTY_PRINT);
+
+        $headers = [
+            'Content-Type' => 'application/json'
+        ];
+
+        return $this->_put('/agreements/' . $agreementId . '/state', [], $body, $headers) === [];
     }
 }

@@ -123,7 +123,9 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      */
     public function put(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
     {
+        $request = $this->createRequestObject('PUT', $uri, $params, $body, $headers);
 
+        return $this->guzzle->send($request);
     }
 
     /**

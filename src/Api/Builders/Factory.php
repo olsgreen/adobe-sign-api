@@ -9,6 +9,11 @@ class Factory
         return new AgreementInfoBuilder();
     }
 
+    public static function createAgreementStateInfoBuilder(): AgreementStateInfoBuilder
+    {
+        return new AgreementStateInfoBuilder();
+    }
+
     public static function createFileInfoBuilder(): FileInfoBuilder
     {
         return new FileInfoBuilder();
