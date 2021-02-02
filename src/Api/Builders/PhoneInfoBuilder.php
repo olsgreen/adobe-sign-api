@@ -69,10 +69,10 @@ class PhoneInfoBuilder extends AbstractBuilder implements BuilderInterface
     {
         $this->validateOrThrow();
         
-        return [
+        return $this->filterMakeOutput([
             'phone' => $this->phone,
             'countryCode' => $this->countryCode,
             'countryIsoCode' => $this->countryIsoCode,
-        ];
+        ]);
     }
 }

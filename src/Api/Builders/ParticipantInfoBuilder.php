@@ -51,7 +51,7 @@ class ParticipantInfoBuilder extends AbstractBuilder implements BuilderInterface
     {
         $this->validateOrThrow();
         
-        return array_filter([
+        return $this->filterMakeOutput([
             'email' => $this->email,
             'securityOption' => $this->securityOption
         ]);

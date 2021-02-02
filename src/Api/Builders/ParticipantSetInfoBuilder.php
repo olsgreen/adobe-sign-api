@@ -137,7 +137,7 @@ class ParticipantSetInfoBuilder extends AbstractBuilder implements BuilderInterf
     {
         $this->validateOrThrow();
         
-        return array_filter([
+        return $this->filterMakeOutput([
             'order' => $this->order,
             'role' => $this->role,
             'label' => $this->label,

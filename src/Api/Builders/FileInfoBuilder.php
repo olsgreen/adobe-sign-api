@@ -51,11 +51,11 @@ class FileInfoBuilder extends AbstractBuilder implements BuilderInterface
         return true;
     }
 
-    public function  make(): array
+    public function make(): array
     {
         $this->validateOrThrow();
         
-        return array_filter([
+        return $this->filterMakeOutput([
             'label' => $this->label,
             'transientDocumentId' => $this->transientDocumentId,
             'libraryDocumentId' => $this->libraryDocumentId,

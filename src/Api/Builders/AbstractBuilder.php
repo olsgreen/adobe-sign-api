@@ -9,6 +9,13 @@ abstract class AbstractBuilder
         return new static();
     }
 
+    protected function filterMakeOutput(array $output)
+    {
+        return array_filter($output, function($item) {
+            return !is_null($item);
+        });
+    }
+
     protected function validateOrThrow()
     {
         $errors = $this->validate();

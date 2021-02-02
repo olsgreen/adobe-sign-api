@@ -158,7 +158,7 @@ class WebhookInfoBuilder extends AbstractBuilder implements BuilderInterface
     {
         $this->validateOrThrow();
         
-        return array_filter([
+        return $this->filterMakeOutput([
             'name' => $this->name,
             'scope' => $this->scope,
             'state' => $this->state,

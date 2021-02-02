@@ -35,8 +35,8 @@ class WebhookUrlInfoBuilder extends AbstractBuilder implements BuilderInterface
     {
         $this->validateOrThrow();
         
-        return [
+        return $this->filterMakeOutput([
             'url' => $this->url
-        ];
+        ]);
     }
 }
