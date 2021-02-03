@@ -29,6 +29,16 @@ class Factory
         return new ParticipantSetInfoBuilder();
     }
 
+    public static function createSendOptionsBuilder(): SendOptionsBuilder
+    {
+        return new SendOptionsBuilder();
+    }
+
+    public static function createEmailOptionBuilder(): EmailOptionBuilder
+    {
+        return new EmailOptionBuilder();
+    }
+
     public static function createPhoneInfoBuilder(): PhoneInfoBuilder
     {
         return new PhoneInfoBuilder();

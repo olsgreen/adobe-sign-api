@@ -17,6 +17,8 @@ class AgreementInfoBuilder extends AbstractBuilder implements BuilderInterface
 
     protected $state;
 
+    protected $emailOption;
+
     public function __construct()
     {
         $this->fileInfos = new InfoCollection(
@@ -26,6 +28,8 @@ class AgreementInfoBuilder extends AbstractBuilder implements BuilderInterface
         $this->participantSetsInfo = new InfoCollection(
             'AgreementInfoBuilder->participantSetsInfo', ParticipantSetInfoBuilder::class, $minRequiredElements = 1
         );
+
+        $this->emailOption = new EmailOptionBuilder();
     }
 
     public function setName(string $name)
@@ -114,6 +118,7 @@ class AgreementInfoBuilder extends AbstractBuilder implements BuilderInterface
             'state' => $this->state,
             'fileInfos' => $this->fileInfos->make(),
             'participantSetsInfo' => $this->participantSetsInfo->make(),
+            'emailOption' => $this->emailOption->make(),
         ]);
     }
 }
