@@ -89,6 +89,11 @@ class AgreementInfoBuilder extends AbstractBuilder implements BuilderInterface
         return $this->participantSetsInfo;
     }
 
+    public function emailOption(): EmailOptionBuilder
+    {
+        return $this->emailOption;
+    }
+
     public function validate()
     {
         $errors = [];
