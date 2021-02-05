@@ -1,9 +1,8 @@
 {
-    "name": "olsgreen/adobe-sign",
+    "name": "olsgreen/adobe-sign-api",
     "description": "Adobe Sign client for PHP",
     "type": "library",
     "require": {
-        "olsgreen/oauth2-adobe-sign": "^1.0",
         "guzzlehttp/guzzle": "^6.0 || ^7.2",
         "symfony/options-resolver": "^5.0",
         "ext-json": "*"
